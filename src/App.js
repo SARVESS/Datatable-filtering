@@ -1,24 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+
+import Datatable from './Datatable';
+
+require("es6-promise").polyfill();
+require("isomorphic-fetch");
 
 function App() {
+  const [data, setData] = useState([]);
+  const [q, setQ] = useState("");
+
+  useEffect(() => {
+    fetch("https://devmentor.live/api/examples/contacts?api_key=6097e5d5")
+      .then((response) => response.json())
+      .then((json) => setData(json));
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div>filter goes here</div>
+      <div>
+        <Datatable data={data}/>
+      </div>
     </div>
   );
 }
