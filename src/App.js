@@ -8,10 +8,10 @@ require('isomorphic-fetch');
 function App() {
   const [data, setData] = useState([]);
   const [q, setQ] = useState('');
-  const [searchColumns, setSearchColumns] = useState(['firstName', 'lastName']);
+  const [searchColumns, setSearchColumns] = useState(['City', 'State']);
 
   useEffect(() => {
-    fetch('https://devmentor.live/api/examples/contacts?api_key=6097e5d5')
+    fetch('https://api.jsonbin.io/b/5f5c76a5302a837e9564b5ca')
       .then((response) => response.json())
       .then((json) => setData(json));
   }, []);
